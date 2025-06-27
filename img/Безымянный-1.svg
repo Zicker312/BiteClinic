@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_1" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230.2 109.08">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #2b53a1;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 4.61px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-family: SK-Porsche, Porsche;
+        font-size: 21px;
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="cls-1" d="m109.22,65.83h-12.51c-6,0-10.87-4.87-10.87-10.87V13.18c0-6,4.87-10.87,10.87-10.87h41.78c6,0,10.87,4.87,10.87,10.87v41.78c0,6-4.87,10.87-10.87,10.87h-10.02c-6,0-10.87-4.87-10.87-10.87v-8.2"/>
+    <path class="cls-1" d="m106.92,24.46h21.35c3.23,0,5.86,2.63,5.86,5.86v4.25c0,6.73-5.46,12.2-12.2,12.2h-8.68c-6.73,0-12.2-5.46-12.2-12.2v-4.25c0-3.23,2.63-5.86,5.86-5.86Z"/>
+    <g>
+      <line class="cls-1" x1="109.22" y1="24.46" x2="109.22" y2="11.38"/>
+      <line class="cls-1" x1="125.98" y1="24.46" x2="125.98" y2="11.38"/>
+    </g>
+  </g>
+  <text class="cls-2" transform="translate(0 104.55)"><tspan x="0" y="0">BYTECLINIC</tspan></text>
+</svg>

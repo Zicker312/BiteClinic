@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Онлайн-запись - BiteClinic</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("bookingForm");
+    const steps = Array.from(document.querySelectorAll(".form-step"));
+    const nextBtns = document.querySelectorAll(".next-btn");
+    const backBtns = document.querySelectorAll(".back-btn");
+
+    // Переход к следующему шагу
+    nextBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const currentStepId = btn.dataset.next;
+            steps.forEach(step => step.classList.remove("active"));
+            document.getElementById(currentStepId).classList.add("active");
+            scrollToTop();
+        });
+    });
+
+    // Переход к предыдущему шагу
+    backBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const prevStepId = btn.dataset.prev;
+            steps.forEach(step => step.classList.remove("active"));
+            document.getElementById(prevStepId).classList.add("active");
+            scrollToTop();
+        });
+    });
+
+    // Обработка отправки формы
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // Здесь можно отправить данные на сервер через fetch/AJAX
+
+        // Показать последний шаг "Спасибо"
+        steps.forEach(step => step.classList.remove("active"));
+        document.getElementById("step6").classList.add("active");
+        scrollToTop();
+    });
+
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+});
+</script>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/логоsvg.svg" alt="TechService Логотип">
+                    </a>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="services.html">Услуги</a></li>
+                        <li class="active"><a href="booking.html">Онлайн-запись</a></li>
+                        <li><a href="account.html">Личный кабинет</a></li>
+                        <li><a href="news.html">Новости</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="booking-section">
+            <div class="container">
+                <h1>Онлайн-запись на ремонт</h1>
+                <p class="section-description">Выберите устройство, мастера и удобное время</p>
+                
+                <form action="admin/booking.php" method="POST" class="booking-form">
+                    <div class="form-step active" id="step1">
+                        <h2>1. Выберите тип устройства</h2>
+                        <div class="device-types">
+                            <label class="device-type">
+                                <input type="radio" name="deviceType" value="laptop" checked>
+                                <img src="img/icons8-показатели-ноутбука-50.png" alt="Ноутбук">
+                                <span>Ноутбук</span>
+                            </label>
+                            
+                            <label class="device-type">
+                                <input type="radio" name="deviceType" value="smartphone">
+                                <img src="img/icons8-смартфон-50.png" alt="Смартфон">
+                                <span>Смартфон</span>
+                            </label>
+                            
+                            <label class="device-type">
+                                <input type="radio" name="deviceType" value="pc">
+                                <img src="img/пк.png" alt="Компьютер">
+                                <span>Компьютер</span>
+                            </label>
+                            
+                            <label class="device-type">
+                                <input type="radio" name="deviceType" value="tv">
+                                <img src="img/icons8-телевизор-50.png" alt="Телевизор">
+                                <span>Телевизор</span>
+                            </label>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn next-btn" data-next="step2">Далее</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-step" id="step2">
+                        <h2>2. Выберите услугу</h2>
+                        <select class="form-select" name="service" required>
+                            <option value="">-- Выберите услугу --</option>
+                            <option value="diagnostic">Диагностика</option>
+                            <option value="screen-replace">Замена экрана</option>
+                            <option value="battery-replace">Замена аккумулятора</option>
+                            <option value="motherboard-repair">Ремонт материнской платы</option>
+                            <option value="cleaning">Чистка от пыли</option>
+                            <option value="software">Программный ремонт</option>
+                        </select>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn back-btn" data-prev="step1">Назад</button>
+                            <button type="button" class="btn next-btn" data-next="step3">Далее</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-step" id="step3">
+                        <h2>3. Выберите мастера</h2>
+                        <div class="masters-list">
+                            <label class="master-card">
+                                <input type="radio" name="master" value="1" checked>
+                                <img src="https://img.freepik.com/free-photo/man-with-arms-crossed_1187-1760.jpg?semt=ais_hybrid&w=740" alt="Мастер Иван">
+                                <div class="master-info">
+                                    <h3>Иван Петров</h3>
+                                    <p>Специализация: ноутбуки, компьютеры</p>
+                                    <p>Стаж: 8 лет</p>
+                                    <div class="rating">★★★★☆</div>
+                                </div>
+                            </label>
+                            
+                            <label class="master-card">
+                                <input type="radio" name="master" value="2">
+                                <img src="https://img.freepik.com/free-photo/portrait-smiling-business-woman-isolated-white-background_231208-10203.jpg" alt="Мастер Анна">
+                                <div class="master-info">
+                                    <h3>Анна Смирнова</h3>
+                                    <p>Специализация: смартфоны, планшеты</p>
+                                    <p>Стаж: 5 лет</p>
+                                    <div class="rating">★★★★★</div>
+                                </div>
+                            </label>
+                            
+                            <label class="master-card">
+                                <input type="radio" name="master" value="3">
+                                <img src="https://img.freepik.com/premium-photo/business-man-white-background_160672-10002.jpg" alt="Мастер Дмитрий">
+                                <div class="master-info">
+                                    <h3>Дмитрий Козлов</h3>
+                                    <p>Специализация: телевизоры, мониторы</p>
+                                    <p>Стаж: 6 лет</p>
+                                    <div class="rating">★★★★☆</div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn back-btn" data-prev="step2">Назад</button>
+                            <button type="button" class="btn next-btn" data-next="step4">Далее</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-step" id="step4">
+                        <h2>4. Выберите дату и время</h2>
+                        <div class="datetime-selector">
+                            <div class="calendar">
+                                <input type="date" name="date" min="2025-06-01" required>
+                            </div>
+                            <div class="time-slots">
+                                <h3>Доступное время:</h3>
+                                <div class="slots-grid">
+                                    <label><input type="radio" name="time" value="10:00"> 10:00</label>
+                                    <label><input type="radio" name="time" value="11:00"> 11:00</label>
+                                    <label><input type="radio" name="time" value="12:00"> 12:00</label>
+                                    <label><input type="radio" name="time" value="13:00"> 13:00</label>
+                                    <label><input type="radio" name="time" value="14:00"> 14:00</label>
+                                    <label><input type="radio" name="time" value="15:00"> 15:00</label>
+                                    <label><input type="radio" name="time" value="16:00"> 16:00</label>
+                                    <label><input type="radio" name="time" value="17:00"> 17:00</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn back-btn" data-prev="step3">Назад</button>
+                            <button type="button" class="btn next-btn" data-next="step5">Далее</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-step" id="step5">
+                        <h2>5. Ваши контактные данные</h2>
+                        <div class="form-group">
+                            <label for="name">Ваше имя</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="booking_date">Дата записи</label>
+                            <input type="date" name="booking_date" id="booking_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Дополнительная информация</label>
+                            <textarea name="description" id="description" rows="4"></textarea>
+                        </div>
+                        </div>
+                            <div class="form-group">
+                            <label for="client_id">ID клиента</label>
+                            <input type="number" name="client_id" id="client_id" required>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn back-btn" data-prev="step4">Назад</button>
+                            <button type="submit" class="btn submit-btn">Отправить заявку</button>
+                        </div>
+                    
+                    <div class="form-step" id="step6">
+                        <div class="success-message">
+                            <h2>Спасибо за заявку!</h2>
+                            <p>Ваша заявка на ремонт успешно отправлена. Наш менеджер свяжется с вами для подтверждения записи.</p>
+                            <p>Номер вашей заявки: <strong>#</strong></p>
+                            <a href="index.html" class="btn">Вернуться на главную</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="img/Безымянный-1.svg" alt="TechService Логотип">
+                </div>
+                <div class="footer-info">
+                    <p>г. Москва, ул. Техническая, 15</p>
+                    <p>+7 (495) 123-45-67</p>
+                    <p>info@techservice.ru</p>
+                </div>
+                <div class="footer-copy">
+                    <p>&copy; 2025 TechService. Все права защищены.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="booking.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
